@@ -187,6 +187,7 @@ fn parse_quoted_string<'text>(
                     't' => escaped.push('\t'),
                     '\\' => escaped.push('\\'),
                     '\"' => escaped.push('\"'),
+                    '\'' => escaped.push('\''),
                     _ => return Err(Error::Todo),
                 },
                 regular => escaped.push(regular),
