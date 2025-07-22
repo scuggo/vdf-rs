@@ -17,6 +17,7 @@ pub type Result<T> = std::result::Result<T, Error>;
 pub enum Error {
     RenderError(fmt::Error),
     RawRenderError { invalid_char: char },
+    TodoMsg(String),
     Todo,
 }
 
@@ -34,6 +35,7 @@ impl fmt::Display for Error {
                 f,
                 "Encountered invalid character in raw string: {invalid_char:?}"
             ),
+            Self::TodoMsg(msg) => write!(f, "TODO: {msg}"),
             Self::Todo => write!(f, "TODO"),
         }
     }
