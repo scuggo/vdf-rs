@@ -16,6 +16,7 @@ repository = "https://github.com/CosmicHorrorDev/vdf-rs"
 divan.workspace = true
 insta.workspace = true
 pretty_assertions.workspace = true
+tracing.workspace = true
 
 [[bench]]
 name = "parser"
