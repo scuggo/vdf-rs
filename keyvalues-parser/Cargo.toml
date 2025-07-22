@@ -11,12 +11,13 @@ categories.workspace = true
 description = "A parser/renderer for vdf text"
 homepage = "https://github.com/CosmicHorrorDev/vdf-rs/tree/main/keyvalues-parser"
 repository = "https://github.com/CosmicHorrorDev/vdf-rs"
+[dependencies]
 
+tracing.workspace = true
 [dev-dependencies]
 divan.workspace = true
 insta.workspace = true
 pretty_assertions.workspace = true
-tracing.workspace = true
 
 [[bench]]
 name = "parser"

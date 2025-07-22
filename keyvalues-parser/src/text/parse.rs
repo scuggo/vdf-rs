@@ -30,17 +30,17 @@ impl<'a> Vdf<'a> {
 }
 
 pub fn raw_parse(s: &str) -> Result<PartialVdf> {
-    trace!("raw_parse called", input = s);
+    trace!("raw_parse called: input={}", s);
     parse_(s, false)
 }
 
 pub fn escaped_parse(s: &str) -> Result<PartialVdf> {
-    trace!("escaped_parse called", input = s);
+    trace!("escaped_parse called: input={}", s);
     parse_(s, true)
 }
 
 pub fn parse_(s: &str, escape_chars: bool) -> Result<PartialVdf> {
-    trace!("parse_ called", input = s, escape_chars);
+    trace!("parse_ called: input={}, escape_chars={}", s, escape_chars);
     let mut chars = CharIter::new(s);
 
     let bases = parse_macros(&mut chars)?;
@@ -139,7 +139,7 @@ fn parse_unquoted_string<'text>(chars: &mut CharIter<'text>) -> Result<&'text st
 }
 
 fn parse_pair<'text>(chars: &mut CharIter<'text>, escape_chars: bool) -> Result<Vdf<'text>> {
-    trace!("parse_pair called", escape_chars);
+    trace!("parse_pair called: escape_chars={}", escape_chars);
     let key = parse_string(chars, escape_chars)?;
     eat_comments_whitespace_and_newlines(chars)?;
     let value = parse_value(chars, escape_chars)?;
@@ -204,7 +204,7 @@ fn parse_quoted_string<'text>(
 }
 
 fn parse_value<'text>(chars: &mut CharIter<'text>, escape_chars: bool) -> Result<Value<'text>> {
-    trace!("parse_value called", escape_chars);
+    trace!("parse_value called: escape_chars={}", escape_chars);
     let value = match chars.peek() {
         Some('{') => {
             let obj = parse_obj(chars, escape_chars)?;
@@ -219,7 +219,7 @@ fn parse_value<'text>(chars: &mut CharIter<'text>, escape_chars: bool) -> Result
 }
 
 fn parse_obj<'text>(chars: &mut CharIter<'text>, escape_chars: bool) -> Result<Obj<'text>> {
-    trace!("parse_obj called", escape_chars);
+    trace!("parse_obj called: escape_chars={}", escape_chars);
     assert!(chars.ensure_next('{'));
     eat_comments_whitespace_and_newlines(chars)?;
 
